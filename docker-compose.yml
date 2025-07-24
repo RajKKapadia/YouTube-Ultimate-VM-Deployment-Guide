@@ -1,0 +1,28 @@
+services:
+  app:
+    build: .
+    container_name: backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgres://postgres:password@postgres:5432/bookmark-shortener
+    command: sh -c "pnpm db:generate && pnpm db:migrate && pnpm start"
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:17.5
+    container_name: postgres
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: bookmark-shortener
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+volumes:
+  postgres_data:
