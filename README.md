@@ -54,15 +54,9 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-### Install Docker Compose
-```bash
-sudo apt-get install -y docker-compose-plugin
-```
-
 ### Add User to Docker Group (Optional)
 ```bash
 sudo usermod -aG docker $USER
-# Log out and log back in for group changes to take effect
 ```
 
 ---
@@ -92,20 +86,15 @@ docker compose up
    ssh-keygen -t ed25519 -C "your_email@example.com"
    # Press enter to accept defaults
    ```
-2. **Start SSH agent and add key:**
-   ```bash
-   eval "$(ssh-agent -s)"
-   ssh-add ~/.ssh/id_ed25519
-   ```
-3. **Copy the public key:**
+2. **Copy the public key:**
    ```bash
    cat ~/.ssh/id_ed25519.pub
    # Copy the output
    ```
-4. **Add the key to GitHub:**
+3. **Add the key to GitHub:**
    - Go to GitHub > Settings > SSH and GPG keys > New SSH key
    - Paste your public key and save
-5. **Test the connection:**
+4. **Test the connection:**
    ```bash
    ssh -T git@github.com
    ```
@@ -121,18 +110,19 @@ cd <repository>
 
 ---
 
-## 6. Creating a .env File Using Nemo
+## 6. Creating a .env File Using Nano
 
-If you have a desktop environment with Nemo (Linux file manager):
-1. Open Nemo: `nemo .`
-2. Right-click > New Document > Empty Document
-3. Name it `.env` and add your environment variables inside.
+If you application needs a `.env` file, create it using either `vim` or `nano`, I prefer `nano`.
 
-Alternatively, via CLI:
 ```bash
-touch .env
+sudo apt update && sudo apt install nano -y
+```
+
+```bash
 nano .env
 ```
+
+Create all the environment variables in the `.env` file and save it.
 
 ---
 
